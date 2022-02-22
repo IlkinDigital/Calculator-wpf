@@ -12,7 +12,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Name="CalculationOutput"
+        <TextBox x:Name="CalculationOutput"
                Grid.Row="0"
                VerticalAlignment="Center"
                HorizontalAlignment="Right"
@@ -21,7 +21,9 @@
                Foreground="Black"
                FontWeight="Bold"
                Margin="0,0,12,0"
-               Content="0"/>
+               IsReadOnly="True"
+                 BorderThickness="0"
+               Text="0"/>
         
         <!--Input-->
         <Grid Grid.Row="1">
@@ -38,28 +40,28 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
+
             <!--Number Buttons-->
-            <Button x:Name="btnN7" Grid.Row="1" Grid.Column="0">7</Button>
-            <Button x:Name="btnN8" Grid.Row="1" Grid.Column="1">8</Button>
-            <Button x:Name="btnN9" Grid.Row="1" Grid.Column="2">9</Button>
-            <Button x:Name="btnN4" Grid.Row="2" Grid.Column="0">4</Button>
-            <Button x:Name="btnN5" Grid.Row="2" Grid.Column="1">5</Button>
-            <Button x:Name="btnN6" Grid.Row="2" Grid.Column="2">6</Button>
-            <Button x:Name="btnN1" Grid.Row="3" Grid.Column="0">1</Button>
-            <Button x:Name="btnN2" Grid.Row="3" Grid.Column="1">2</Button>
-            <Button x:Name="btnN3" Grid.Row="3" Grid.Column="2">3</Button>
-            <Button x:Name="btnN0" Grid.Row="4" Grid.Column="1">0</Button>
+            <Button x:Name="btnN7"  Grid.Row="1" Grid.Column="0" Click="btnN7_Click">7</Button>
+            <Button x:Name="btnN8" Grid.Row="1" Grid.Column="1" Click="btnN8_Click">8</Button>
+            <Button x:Name="btnN9" Grid.Row="1" Grid.Column="2" Click="btnN9_Click">9</Button>
+            <Button x:Name="btnN4" Grid.Row="2" Grid.Column="0" Click="btnN4_Click">4</Button>
+            <Button x:Name="btnN5" Grid.Row="2" Grid.Column="1" Click="btnN5_Click">5</Button>
+            <Button x:Name="btnN6" Grid.Row="2" Grid.Column="2" Click="btnN6_Click">6</Button>
+            <Button x:Name="btnN1" Grid.Row="3" Grid.Column="0" Click="btnN1_Click">1</Button>
+            <Button x:Name="btnN2" Grid.Row="3" Grid.Column="1" Click="btnN2_Click">2</Button>
+            <Button x:Name="btnN3" Grid.Row="3" Grid.Column="2" Click="btnN3_Click">3</Button>
+            <Button x:Name="btnN0" Grid.Row="4" Grid.Column="1" Click="btnN0_Click">0</Button>
             
             <!--Action Buttons-->
-            <Button x:Name="btnCE" Grid.Row="0" Grid.Column="0" Content="CE" />
-            <Button x:Name="btnC" Grid.Row="0" Grid.Column="1" Content="C" />
-            <Button x:Name="btnBS" Grid.Row="0" Grid.Column="2" Content="⌫" />
+            <Button x:Name="btnCE" Grid.Row="0" Grid.Column="0" Content="CE" Click="btnCE_Click"/>
+            <Button x:Name="btnC" Grid.Row="0" Grid.Column="1" Content="C" Click="btnC_Click"/>
+            <Button x:Name="btnBS" Grid.Row="0" Grid.Column="2" Content="⌫" Click="btnBS_Click"/>
             <Button x:Name="btnAns" Grid.Row="4" Grid.Column="2" Content="Ans"/>
-            <Button x:Name="btnPM" Grid.Row="4" Grid.Column="0" Content="+/-"/>
+            <Button x:Name="btnPM" Grid.Row="4" Grid.Column="0" Content="+/-" Click="btnPM_Click"/>
 
             <!--Operation Buttons-->
-            <Button x:Name="btnDivide" Grid.Row="0" Grid.Column="3" Content="/"/>
+            <Button x:Name="btnDivide" Grid.Row="0" Grid.Column="3" Content="/" Click="btnDivide_Click"/>
             <Button x:Name="btnMult" Grid.Row="1" Grid.Column="3" Content="*"/>
             <Button x:Name="btnPlus" Grid.Row="2" Grid.Column="3" Content="+"/>
             <Button x:Name="btnMinus" Grid.Row="3" Grid.Column="3" Content="-"/>
