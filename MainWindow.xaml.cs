@@ -25,7 +25,7 @@ namespace Calculator
     {
         enum EOperationState { None, Plus, Minus, Multiply, Divide };
 
-        private string OutputNumber { get; set; } = "";
+        private string OutputNumber { get; set; } = "0";
         private bool IsPositive { get; set; } = true;
 
         EOperationState _OperationState = EOperationState.None;
