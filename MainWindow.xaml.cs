@@ -25,12 +25,27 @@ namespace Calculator
     {
         enum EOperationState { None, Plus, Minus, Multiply, Divide };
 
-        private string Number { get; set; } = "";
+        private string OutputNumber { get; set; } = "";
         private bool IsPositive { get; set; } = true;
-        private EOperationState OperationState { get; set; }
+
+        EOperationState _OperationState = EOperationState.None;
+        private EOperationState OperationState 
+        { 
+            get => _OperationState; 
+            set
+            {
+                _OperationState = value;
+                LastNumber = OutputToDouble();
+
+                Started = false;
+                if (!IsPositive)
+                    IsPositive = true;
+            }
+        }
 
         private bool Started { get; set; } = false;
-        private int Ans { get; set; } = 0;
+        private double LastNumber { get; set; } = 0;
+        private double Ans { get; set; } = 0;
 
         public MainWindow()
         {
@@ -41,12 +56,12 @@ namespace Calculator
         {
             if (!Started)
             {
-                Number = num;
+                OutputNumber = num;
                 Started = true;
             }
             else
             {
-                Number += num;
+                OutputNumber += num;
             }
 
             UpdateOutput();
@@ -54,7 +69,7 @@ namespace Calculator
 
         private void InitOutput()
         {
-            Number = "0";
+            OutputNumber = "0";
             IsPositive = true;
             Started = false;
 
@@ -64,9 +79,9 @@ namespace Calculator
         private void UpdateOutput()
         {
             if (IsPositive)
-                CalculationOutput.Text = Number;
+                CalculationOutput.Text = OutputNumber;
             else
-                CalculationOutput.Text = "-" + Number;
+                CalculationOutput.Text = "-" + OutputNumber;
         }
 
         private void SwitchSign()
@@ -76,6 +91,11 @@ namespace Calculator
                 IsPositive = IsPositive ? false : true;
                 UpdateOutput();
             }
+        }
+
+        private double OutputToDouble()
+        {
+            return Convert.ToDouble(OutputNumber) * (IsPositive ? 1 : -1);
         }
 
         private void btnN0_Click(object sender, RoutedEventArgs e)
@@ -93,32 +113,95 @@ namespace Calculator
         private void btnN8_Click(object sender, RoutedEventArgs e) => AddNumber("8");
         private void btnN9_Click(object sender, RoutedEventArgs e) => AddNumber("9");
 
-        private void btnCE_Click(object sender, RoutedEventArgs e)
+        private void btnCE_Click(object sender, RoutedEventArgs e) => InitOutput();
+        private void btnC_Click(object sender, RoutedEventArgs e)
         {
             InitOutput();
             Ans = 0;
+            LastNumber = 0;
+            OperationState = EOperationState.None;
         }
-        private void btnC_Click(object sender, RoutedEventArgs e) => InitOutput();
 
         private void btnBS_Click(object sender, RoutedEventArgs e)
         {
             if (Started)
             {
-                if (Number.Length == 1)
+                if (OutputNumber.Length == 1)
                     InitOutput();
                 else
-                    Number = Number.Remove(Number.Length - 1);
+                    OutputNumber = OutputNumber.Remove(OutputNumber.Length - 1);
 
                 UpdateOutput();
             }
         }
 
+        private void btnAns_Click(object sender, RoutedEventArgs e)
+        {
+            OutputNumber = Convert.ToString(Ans);
+            UpdateOutput();
+        }
+
         private void btnPM_Click(object sender, RoutedEventArgs e) => SwitchSign();
 
+        private void btnMult_Click(object sender, RoutedEventArgs e)
+        {
+            OperationState = EOperationState.Multiply;
+        }
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        {
+            OperationState = EOperationState.Plus;
+        }
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+            OperationState = EOperationState.Minus;
+        }
         private void btnDivide_Click(object sender, RoutedEventArgs e)
         {
             OperationState = EOperationState.Divide;
+        }
+
+        private void btnEquals_Click(object sender, RoutedEventArgs e)
+        {
+            switch (OperationState)
+            {
+                case EOperationState.None:
+                    Ans = OutputToDouble();
+                    OutputNumber = Convert.ToString(Ans);
+                    UpdateOutput();
+                    break;
+                case EOperationState.Plus:
+                    Ans = LastNumber + OutputToDouble();
+                    OutputNumber = Convert.ToString(Ans);
+                    UpdateOutput();
+                    break;
+                case EOperationState.Minus:
+                    Ans = LastNumber - OutputToDouble();
+                    OutputNumber = Convert.ToString(Ans);
+                    UpdateOutput();
+                    break;
+                case EOperationState.Multiply:
+                    Ans = LastNumber * OutputToDouble();
+                    OutputNumber = Convert.ToString(Ans);
+                    UpdateOutput();
+                    break;               
+                case EOperationState.Divide:
+                    double recent = OutputToDouble();
+                    if (recent == 0)
+                    {
+                        CalculationOutput.Text = "Cannot divide by zero";
+                    }
+                    else
+                    {
+                        Ans = LastNumber / OutputToDouble();
+                        OutputNumber = Convert.ToString(Ans);
+                        UpdateOutput();
+                    }
+                    break;
+            }
+
+            OperationState = EOperationState.None;
             Started = false;
         }
+
     }
 }

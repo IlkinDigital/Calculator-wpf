@@ -42,7 +42,7 @@
             </Grid.RowDefinitions>
 
             <!--Number Buttons-->
-            <Button x:Name="btnN7"  Grid.Row="1" Grid.Column="0" Click="btnN7_Click">7</Button>
+            <Button x:Name="btnN7" Grid.Row="1" Grid.Column="0" Click="btnN7_Click">7</Button>
             <Button x:Name="btnN8" Grid.Row="1" Grid.Column="1" Click="btnN8_Click">8</Button>
             <Button x:Name="btnN9" Grid.Row="1" Grid.Column="2" Click="btnN9_Click">9</Button>
             <Button x:Name="btnN4" Grid.Row="2" Grid.Column="0" Click="btnN4_Click">4</Button>
@@ -57,15 +57,15 @@
             <Button x:Name="btnCE" Grid.Row="0" Grid.Column="0" Content="CE" Click="btnCE_Click"/>
             <Button x:Name="btnC" Grid.Row="0" Grid.Column="1" Content="C" Click="btnC_Click"/>
             <Button x:Name="btnBS" Grid.Row="0" Grid.Column="2" Content="⌫" Click="btnBS_Click"/>
-            <Button x:Name="btnAns" Grid.Row="4" Grid.Column="2" Content="Ans"/>
+            <Button x:Name="btnAns" Grid.Row="4" Grid.Column="2" Content="Ans" Click="btnAns_Click"/>
             <Button x:Name="btnPM" Grid.Row="4" Grid.Column="0" Content="+/-" Click="btnPM_Click"/>
 
             <!--Operation Buttons-->
             <Button x:Name="btnDivide" Grid.Row="0" Grid.Column="3" Content="/" Click="btnDivide_Click"/>
-            <Button x:Name="btnMult" Grid.Row="1" Grid.Column="3" Content="*"/>
-            <Button x:Name="btnPlus" Grid.Row="2" Grid.Column="3" Content="+"/>
-            <Button x:Name="btnMinus" Grid.Row="3" Grid.Column="3" Content="-"/>
-            <Button x:Name="btnEquals" Grid.Row="4" Grid.Column="3" Content="="/>
+            <Button x:Name="btnMult" Grid.Row="1" Grid.Column="3" Content="*" Click="btnMult_Click"/>
+            <Button x:Name="btnPlus" Grid.Row="2" Grid.Column="3" Content="+" Click="btnPlus_Click"/>
+            <Button x:Name="btnMinus" Grid.Row="3" Grid.Column="3" Content="-" Click="btnMinus_Click"/>
+            <Button x:Name="btnEquals" Grid.Row="4" Grid.Column="3" Content="=" Click="btnEquals_Click"/>
         </Grid>
     </Grid>
 </Window>
